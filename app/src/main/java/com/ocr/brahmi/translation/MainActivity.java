@@ -1,10 +1,12 @@
 package com.ocr.brahmi.translation;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     TextView outputDB, devanagari, outputBD, brahmi;
     Button buttonDB, buttonBD;
     String devanagariText, brahmiText, outputText;
+    ImageView change_Screen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 brahmiText = brahmi.getText().toString();
                 outputText = BrahmiToDevanagari(brahmiText);
                 outputDB.setText(Html.fromHtml(outputText));
+            }
+        });
+        change_Screen = findViewById(R.id.change_screen);
+        change_Screen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             }
         });
     }
@@ -604,5 +617,10 @@ public class MainActivity extends AppCompatActivity {
 
     private String getUnicodeChar(int unicode) {
         return new String(Character.toChars(unicode));
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true); // Move the task containing this activity to the background
     }
 }
