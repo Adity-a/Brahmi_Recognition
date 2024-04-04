@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Translation</string>
+
+    <string name="translate_loading">Translate button will be enabled after translation model is downloaded.\n\nPlease wait…</string>
+    <string name="translate_btn">Translate</string>
+    <string name="smart_reply_error">The conversation\'s language isn\'t supported, so the result doesn\'t contain any suggestions.</string>
+    <string name="brahmiToDevnagri">Brahmi To Devnagri</string>
+    <string name="devnagriToBrahmi">Devnagri To Brahmi</string>
+    <string name="write_here_to_convert">Write Here To Convert . . . .</string>
+    <string name="convert">CONVERT</string>
+    <string name="scan_the_text_you_want">Scan The Text You Want</string>
+
+</resources>
