@@ -26,6 +26,8 @@ public class ScannerActivity extends AppCompatActivity {
     Uri imageUri;
     ContentValues values;
 
+    String imagePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +90,7 @@ public class ScannerActivity extends AppCompatActivity {
             if (requestCode == GALLERY_SELECT_CODE) {
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
+                    imagePath = selectedImageUri.getPath();
                     extract.setImageURI(selectedImageUri);
                 }
             } else if (requestCode == CAMERA_SELECT_CODE) {
@@ -95,6 +98,7 @@ public class ScannerActivity extends AppCompatActivity {
                     Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
                             getContentResolver(), imageUri);
                     if (imageUri != null) {
+                        imagePath = imageUri.getPath();
                         extract.setImageBitmap(thumbnail);
                     } else {
                         Toast.makeText(this, "Image capture failed!", Toast.LENGTH_SHORT).show();
