@@ -12,6 +12,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true;
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -41,10 +42,9 @@ dependencies {
     implementation 'com.valdesekamdem.library:md-toast:0.9.0'
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
     implementation 'com.google.mlkit:translate:17.0.1'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.rmtheis:tess-two:9.1.0'
-
 
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
 
