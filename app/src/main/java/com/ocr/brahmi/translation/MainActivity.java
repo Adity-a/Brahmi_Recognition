@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonDB, buttonBD;
     String devanagariText, brahmiText, outputText;
     ImageView change_Screen;
+    public final static String MESSAGE_KEY = "dataFrom.sendData.message_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +27,21 @@ public class MainActivity extends AppCompatActivity {
         Typeface brahmiFont = Typeface.createFromAsset(getAssets(), "fonts/NotoSansBrahmi-Regular.ttf");
         Typeface devanagariFont = Typeface.createFromAsset(getAssets(), "fonts/NotoSansDevanagari-Regular.ttf");
 
-        outputDB = (TextView)findViewById(R.id.outputDB);
+        outputDB = findViewById(R.id.outputDB);
         outputDB.setTypeface(brahmiFont);
 
-        outputBD = (TextView)findViewById(R.id.outputBD);
+        outputBD = findViewById(R.id.outputBD);
         outputBD.setTypeface(devanagariFont);
 
-        buttonBD = (Button)findViewById(R.id.buttonBD);
-        buttonDB = (Button)findViewById(R.id.buttonDB);
+        buttonBD = findViewById(R.id.buttonBD);
+        buttonDB = findViewById(R.id.buttonDB);
 
-        devanagari = (TextView)findViewById(R.id.devanagari);
+        devanagari = findViewById(R.id.devanagari);
         devanagari.setTypeface(devanagariFont);
-        brahmi = (TextView)findViewById(R.id.brahmi);
+        brahmi = findViewById(R.id.brahmi);
+        Intent intent = getIntent();
+        String extractedText = intent.getStringExtra(MESSAGE_KEY);
+        brahmi.setText(extractedText);
         brahmi.setTypeface(brahmiFont);
 
         buttonDB.setOnClickListener(new View.OnClickListener() {
