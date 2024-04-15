@@ -57,7 +57,7 @@ public class ScannerActivity extends AppCompatActivity {
         tessDataPath = getFilesDir() + "/tesseract/";
         tessBaseAPI = new TessBaseAPI();
         copyTrainedData();
-        tessBaseAPI.init(tessDataPath, "brahmi1");
+        tessBaseAPI.init(tessDataPath, "brahmi");
         camera_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +92,7 @@ public class ScannerActivity extends AppCompatActivity {
             }
 
             // Copy the trained data file from assets to the device's filesystem
-            String trainedDataName = "brahmi1.traineddata";
+            String trainedDataName = "brahmi.traineddata";
             InputStream in = getAssets().open("tessdata/" + trainedDataName);
             OutputStream out = new FileOutputStream(tessDataPath + "tessdata/" + trainedDataName);
 
