@@ -142,7 +142,6 @@ public class ScannerActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                                 getContentResolver(), selectedImageUri);
-                        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
                         //Bitmap resizedImage = resizeImage(bitmap, newWidth, newHeight);
                         //extract.setImageBitmap(grayScaleConversion(bitmap));
                         //extract.setImageBitmap(bitmap);
