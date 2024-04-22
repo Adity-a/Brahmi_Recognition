@@ -39,8 +39,6 @@ public class ScannerActivity extends AppCompatActivity {
     int CAMERA_PERMISSION_CODE = 300;
     Uri imageUri;
     ContentValues values;
-    String imagePath;
-    // Tesseract variables
     TessBaseAPI tessBaseAPI;
     String tessDataPath;
     public final static String MESSAGE_KEY = "dataFrom.sendData.message_key";
@@ -49,7 +47,6 @@ public class ScannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-        Typeface brahmiFont = Typeface.createFromAsset(getAssets(), "fonts/NotoSansBrahmi-Regular.ttf");
         extract = findViewById(R.id.extract);
         camera_btn = findViewById(R.id.camera_btn);
         page_btn = findViewById(R.id.page_btn);
@@ -145,7 +142,8 @@ public class ScannerActivity extends AppCompatActivity {
                         //Bitmap resizedImage = resizeImage(bitmap, newWidth, newHeight);
                         //extract.setImageBitmap(grayScaleConversion(bitmap));
                         //extract.setImageBitmap(bitmap);
-                        extractText(grayScaleConversion(bitmap));
+                        //extractText(grayScaleConversion(bitmap));
+                        extractText(bitmap);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
