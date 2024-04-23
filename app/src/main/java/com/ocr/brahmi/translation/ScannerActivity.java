@@ -150,13 +150,13 @@ public class ScannerActivity extends AppCompatActivity {
                 }
             } else if (requestCode == CAMERA_SELECT_CODE) {
                 try {
-                    Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
+                    Bitmap bt = MediaStore.Images.Media.getBitmap(
                             getContentResolver(), imageUri);
-                    if (imageUri != null) {
+                    if (bt != null) {
                         //extract.setImageBitmap(thumbnail);
                         //Bitmap resizedImage = resizeImage(thumbnail, newWidth, newHeight);
-                        extract.setImageBitmap(grayScaleConversion(thumbnail));
-                        extractText(thumbnail);
+                        extract.setImageBitmap(grayScaleConversion(bt));
+                        extractText(bt);
                     } else {
                         Toast.makeText(this, "Image capture failed!", Toast.LENGTH_SHORT).show();
                     }
