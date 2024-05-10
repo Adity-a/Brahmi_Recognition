@@ -6,6 +6,7 @@ android {
     namespace 'com.ocr.brahmi.translation'
     compileSdk 33
 
+
     defaultConfig {
         applicationId "com.ocr.brahmi.translation"
         minSdk 19
@@ -48,5 +49,5 @@ dependencies {
 
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
 
-
+    implementation project(':sdk')
 }

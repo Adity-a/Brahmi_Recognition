@@ -1,0 +1,2 @@
+ninja: Entering directory `C:\Users\adity\StudioProjects\Major-Project\sdk\.cxx\Debug\15333n28\arm64-v8a'
+ninja: no work to do.

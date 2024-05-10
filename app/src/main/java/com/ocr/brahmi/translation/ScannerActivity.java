@@ -5,25 +5,23 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import com.googlecode.tesseract.android.TessBaseAPI;
+
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -168,19 +166,21 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     public static Bitmap grayScaleConversion(Bitmap thumbnail) {
-        int width, height;
-        height = thumbnail.getHeight();
-        width = thumbnail.getWidth();
+        int width = thumbnail.getWidth();
+        int height = thumbnail.getHeight();
 
+        Mat rgba = new Mat();
+        Mat grayMat = new Mat();
+
+        // Convert Bitmap to Mat
+        Utils.bitmapToMat(thumbnail, rgba);
+
+        // Convert RGBA to Grayscale
+        Imgproc.cvtColor(rgba, grayMat, Imgproc.COLOR_RGBA2GRAY);
+
+        // Convert grayscale Mat to Bitmap
         Bitmap grayscaleBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(grayscaleBitmap);
-        Paint paint = new Paint();
-        ColorMatrix colorMatrix = new ColorMatrix();
-        colorMatrix.setSaturation(0); // Setting saturation to 0 converts the image to grayscale
-        ColorMatrixColorFilter colorMatrixFilter = new ColorMatrixColorFilter(colorMatrix);
-        paint.setColorFilter(colorMatrixFilter);
-        canvas.drawBitmap(thumbnail, 0, 0, paint);
+        Utils.matToBitmap(grayMat, grayscaleBitmap);
 
         return grayscaleBitmap;
     }
