@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -295,10 +296,7 @@ public class MainActivity extends AppCompatActivity {
                     b += getUnicodeChar(0x1106F);
                     break;
                 default:
-//                    c = new String(new int[]{n}, 0,1);
-//                    c = "?";
-//                    Log.d("c",c);
-                    b += getUnicodeChar(n);
+                    //b += getUnicodeChar(n);
                     break;
             }
         }
@@ -600,10 +598,7 @@ public class MainActivity extends AppCompatActivity {
                     i++;
                     break;
                 default:
-//                    c = new String(new int[]{n}, 0,1);
-//                    c = "?";
-//                    Log.d("c",c);
-                    b += getUnicodeChar(n);
+                    //b += getUnicodeChar(n);
                     break;
             }
         }

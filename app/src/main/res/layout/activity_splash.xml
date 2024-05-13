@@ -14,7 +14,7 @@
 
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/progress"
-            style="@style/SpinKitView.CubeGrid"
+            style="@style/SpinKitView.FadingCircle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
