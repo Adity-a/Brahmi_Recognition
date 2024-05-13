@@ -13,8 +13,7 @@
  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/tools"
-    android:background="#1F1B24"
+     android:background="#1F1B24"
     android:orientation="vertical"
     tools:context=".MainActivity"
     android:paddingHorizontal="@dimen/margin_default">
@@ -31,7 +30,7 @@
         android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        card_view:cardPreventCornerOverlap="false"
+        tools:cardPreventCornerOverlap="false"
         android:id="@+id/card_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,18 +77,16 @@
 
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:padding="3dp"
-                android:background="@drawable/circle_shape"
-                android:id="@+id/mic"
-                android:visibility="gone"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/ic_mic"/>
+                <Button
+                    android:id="@+id/ic_clear0"
+                    android:backgroundTint="#C60303"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/colorWhite"
+                    android:text="clear" />
+
             </RelativeLayout>
             <EditText
                android:hint="@string/write_here_to_convert"
@@ -171,7 +168,7 @@
     <androidx.cardview.widget.CardView
         android:layout_marginBottom="10dp"
         android:layout_below="@id/swap"
-        card_view:cardPreventCornerOverlap="false"
+        tools:cardPreventCornerOverlap="false"
         app:cardBackgroundColor="#35324c"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -192,6 +189,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <androidx.cardview.widget.CardView
                 android:elevation="8dp"
                 android:layout_width="wrap_content"
@@ -210,6 +211,18 @@
                     android:textColor="#fff"
                     android:textSize="16sp" />
             </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/ic_clear1"
+                android:backgroundTint="#C60303"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/colorWhite"
+                android:text="clear" />
+
+        </RelativeLayout>
 
 
             <EditText
