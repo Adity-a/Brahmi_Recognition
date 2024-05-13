@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -76,14 +75,10 @@ public class MainActivity extends AppCompatActivity {
     private String DevanagariToBrahmi(String devanagariText) {
         String b="";
         int len = devanagariText.length();
-        String c="";
         for(int i=0; i<len; i++){
             int n = devanagariText.codePointAt(i);
             switch (n){
                 case 0x905: //A
-//                    c = new String(new int[] { 0x11005 }, 0, 1);
-//                    c = getUnicodeChar(0x11005);
-//                    Log.d("c",c);
                     b += getUnicodeChar(0x11005);
                     break;
                 case 0x906: //AA
@@ -313,14 +308,10 @@ public class MainActivity extends AppCompatActivity {
     private String BrahmiToDevanagari(String brahmiText) {
         String b="";
         int len = brahmiText.length();
-        String c="";
         for(int i=0; i<len; i++){
             int n = brahmiText.codePointAt(i);
             switch (n){
                 case 0x11005: //A
-                    //c = new String(new int[] { 0x11005 }, 0, 1);
-                    //c = getUnicodeChar(0x11005);
-                    //Log.d("c",c);
                     b += getUnicodeChar(0x905);
                     i++;
                     break;
