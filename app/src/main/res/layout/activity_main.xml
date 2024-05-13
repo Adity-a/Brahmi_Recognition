@@ -96,7 +96,7 @@
                android:layout_marginBottom="30dp"
                android:background="@null"
                android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                android:id="@+id/devanagari"
                android:layout_marginTop="5dp"
                android:textSize="16sp"
@@ -215,7 +215,7 @@
             <EditText
                 android:hint="@string/write_here_to_convert"
                 android:layout_marginBottom="30dp"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:background="@null"
