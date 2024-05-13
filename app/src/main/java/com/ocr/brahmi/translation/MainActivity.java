@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     TextView outputDB, devanagari, outputBD, brahmi;
-    Button buttonDB, buttonBD;
+    Button buttonDB, buttonBD, button_CL, button__CL;
     String devanagariText, brahmiText, outputText;
     ImageView change_Screen;
     public final static String MESSAGE_KEY = "dataFrom.sendData.message_key";
@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         buttonBD = findViewById(R.id.buttonBD);
         buttonDB = findViewById(R.id.buttonDB);
+        button_CL = findViewById(R.id.ic_clear0);
+        button__CL = findViewById(R.id.ic_clear1);
 
         devanagari = findViewById(R.id.devanagari);
         devanagari.setTypeface(devanagariFont);
@@ -43,6 +45,22 @@ public class MainActivity extends AppCompatActivity {
         String extractedText = intent.getStringExtra(MESSAGE_KEY);
         brahmi.setText(extractedText);
         brahmi.setTypeface(brahmiFont);
+
+        button_CL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                devanagari.setText("");
+                outputBD.setText("");
+            }
+        });
+
+        button__CL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                brahmi.setText("");
+                outputDB.setText("");
+            }
+        });
 
         buttonDB.setOnClickListener(new View.OnClickListener() {
             @Override
