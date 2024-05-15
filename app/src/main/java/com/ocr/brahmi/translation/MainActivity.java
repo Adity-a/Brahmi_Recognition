@@ -49,8 +49,14 @@ public class MainActivity extends AppCompatActivity {
         button_CL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                devanagari.setText("");
-                outputBD.setText("");
+                boolean b = devanagari.getText().toString().isEmpty() && outputBD.getText().toString().isEmpty();
+                if (b) {
+                    Toast.makeText(MainActivity.this, "Nothing to clear", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    devanagari.setText("");
+                    outputBD.setText("");
+                }
             }
         });
 
