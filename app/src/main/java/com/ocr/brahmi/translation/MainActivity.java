@@ -640,6 +640,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true); // Move the task containing this activity to the background
+        moveTaskToBack(true);git status
     }
 }
