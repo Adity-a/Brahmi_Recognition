@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
               
                 boolean b = brahmi.getText().toString().isEmpty() && outputDB.getText().toString().isEmpty();
               
-               boolean b = brahmi.getText().toString().isEmpty() && outputDB.getText().toString().isEmpty();
-              
                 if (b) {
                     Toast.makeText(MainActivity.this, "Nothing to clear", Toast.LENGTH_SHORT).show();
                 } else {
