@@ -9,5 +9,10 @@
     <string name="write_here_to_convert">Write Here To Convert . . . .</string>
     <string name="convert">CONVERT</string>
     <string name="scan_the_text_you_want">Scan The Text You Want</string>
+    <string name="guide">\nFew Tips:\n\n
+        1. The first button is to view the conversion page without selecting image.\n\n
+        2. Second button will open the image picker for selecting Brahmi Image.\n
+    </string>
+
 
 </resources>
