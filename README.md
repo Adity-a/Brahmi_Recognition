@@ -10,7 +10,7 @@ This Android application is deviloped using Tesseract OCR for recognizing Brahmi
 ## Installation
 
 1. Clone the repository:
-git clone https://github.com/Adity-a/presence-android-app.git
+[git clone https://github.com/Adity-a/presence-android-app.git](https://github.com/Adity-a/Brahmi_Recognition.git)
 
 2. Open the project in Android Studio.
 
