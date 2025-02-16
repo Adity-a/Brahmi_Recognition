@@ -642,6 +642,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         moveTaskToBack(true); // Move the task containing this activity to the background
     }
 }

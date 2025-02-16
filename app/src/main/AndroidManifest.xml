@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -30,7 +31,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Translation"
         tools:targetApi="31" >
-
+        <activity
+            android:name=".CropperActivity"
+            android:exported="false" />
         <activity
             android:name=".ScannerActivity"
             android:exported="true"
@@ -49,6 +52,10 @@
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Translation"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -1,0 +1,50 @@
+{
+  "installationFolder": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\build\\intermediates\\prefab_package\\debug\\prefab",
+  "gradlePath": ":sdk",
+  "packageInfo": {
+    "packageName": "sdk",
+    "packageSchemaVersion": 2,
+    "packageDependencies": [],
+    "modules": [
+      {
+        "moduleName": "opencv_jni_shared",
+        "moduleHeaders": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\native\\jni\\include",
+        "moduleExportLibraries": [],
+        "abis": [
+          {
+            "abiName": "armeabi-v7a",
+            "abiApi": 19,
+            "abiNdkMajor": 25,
+            "abiStl": "c++_shared",
+            "abiLibrary": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\armeabi-v7a\\libopencv_jni_shared.a",
+            "abiAndroidGradleBuildJsonFile": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\armeabi-v7a\\android_gradle_build.json"
+          },
+          {
+            "abiName": "arm64-v8a",
+            "abiApi": 21,
+            "abiNdkMajor": 25,
+            "abiStl": "c++_shared",
+            "abiLibrary": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\arm64-v8a\\libopencv_jni_shared.a",
+            "abiAndroidGradleBuildJsonFile": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\arm64-v8a\\android_gradle_build.json"
+          },
+          {
+            "abiName": "x86",
+            "abiApi": 19,
+            "abiNdkMajor": 25,
+            "abiStl": "c++_shared",
+            "abiLibrary": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\x86\\libopencv_jni_shared.a",
+            "abiAndroidGradleBuildJsonFile": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\x86\\android_gradle_build.json"
+          },
+          {
+            "abiName": "x86_64",
+            "abiApi": 21,
+            "abiNdkMajor": 25,
+            "abiStl": "c++_shared",
+            "abiLibrary": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\x86_64\\libopencv_jni_shared.a",
+            "abiAndroidGradleBuildJsonFile": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\.cxx\\Debug\\15333n28\\x86_64\\android_gradle_build.json"
+          }
+        ]
+      }
+    ]
+  }
+}

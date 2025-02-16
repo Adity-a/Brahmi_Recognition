@@ -2,9 +2,15 @@ package com.ocr.brahmi.translation;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,22 +18,26 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
-import org.opencv.android.Utils;
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.ref.WeakReference;
 
 public class ScannerActivity extends AppCompatActivity {
 
@@ -39,6 +49,9 @@ public class ScannerActivity extends AppCompatActivity {
     ContentValues values;
     TessBaseAPI tessBaseAPI;
     String tessDataPath;
+
+    ActivityResultLauncher<String> mGetContent;
+    ActivityResultLauncher<Uri> mGetImage;
     public final static String MESSAGE_KEY = "dataFrom.sendData.message_key";
 
     @Override
@@ -56,7 +69,7 @@ public class ScannerActivity extends AppCompatActivity {
         camera_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //capture();
+                capture();
             }
         });
         page_btn.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +86,16 @@ public class ScannerActivity extends AppCompatActivity {
         gallery_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gallery();
+                mGetContent.launch("image/*");
+            }
+        });
+
+        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri selectedImageUri) {
+                Intent intent = new Intent(ScannerActivity.this, CropperActivity.class);
+                intent.putExtra("imageUri", selectedImageUri.toString());
+                startActivityForResult(intent, GALLERY_SELECT_CODE);
             }
         });
     }
@@ -105,85 +127,129 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     private void capture() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Please Give the Permission to Use Camera", Toast.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+        if (ContextCompat.checkSelfPermission(ScannerActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(ScannerActivity.this, "Please Give the Permission to Use Camera", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
         } else {
-            values = new ContentValues();
-            values.put(MediaStore.Images.Media.TITLE, "New Picture");
-            values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
-            imageUri = getContentResolver().insert(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-            startActivityForResult(intent, CAMERA_SELECT_CODE);
+                    values = new ContentValues();
+                    values.put(MediaStore.Images.Media.TITLE, "New Picture");
+                    values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
+                    imageUri = getContentResolver().insert(
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    startActivityForResult(intent, CAMERA_SELECT_CODE);
         }
     }
-    private void gallery() {
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
 
-        startActivityForResult(Intent.createChooser(i, "Gallery_Select_Code"), GALLERY_SELECT_CODE);
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == GALLERY_SELECT_CODE) {
-                Uri selectedImageUri = data.getData();
-                if (null != selectedImageUri) {
-                    try {
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(
-                                getContentResolver(), selectedImageUri);
-                        //Bitmap resizedImage = resizeImage(bitmap, newWidth, newHeight);
-                        //extract.setImageBitmap(grayScaleConversion(bitmap));
-                        //extract.setImageBitmap(bitmap);
-                        //extractText(grayScaleConversion(bitmap));
-                        extractText(bitmap);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            } else if (requestCode == CAMERA_SELECT_CODE) {
-                try {
-                    Bitmap bt = MediaStore.Images.Media.getBitmap(
-                            getContentResolver(), imageUri);
-                    if (bt != null) {
-                        //extract.setImageBitmap(thumbnail);
-                        //Bitmap resizedImage = resizeImage(thumbnail, newWidth, newHeight);
-                        extract.setImageBitmap(grayScaleConversion(bt));
-                        extractText(bt);
-                    } else {
-                        Toast.makeText(this, "Image capture failed!", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        if (resultCode == RESULT_OK && requestCode==GALLERY_SELECT_CODE) {
+
+            String finalImage = data.getStringExtra("croppedUri");
+            Uri croppedImageUri = null;
+            if (finalImage != null) {
+                croppedImageUri = Uri.parse(finalImage);
             }
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                        getContentResolver(), croppedImageUri);
+                //extract.setImageBitmap(greyScaleConversion(bitmap));
+                extractText(bitmap);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        } else if (resultCode == RESULT_OK && requestCode == CAMERA_SELECT_CODE) {
+
+            cropData();
+
+            /*String finalImage = data.getStringExtra("croppedUri");
+            Uri croppedImageUri = null;
+            if (finalImage != null) {
+                croppedImageUri = Uri.parse(finalImage);
+            }
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                        getContentResolver(), croppedImageUri);
+                //extract.setImageBitmap(greyScaleConversion(bitmap));
+                extractText(bitmap);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }*/
         }
     }
 
-    public static Bitmap grayScaleConversion(Bitmap thumbnail) {
-        int width = thumbnail.getWidth();
-        int height = thumbnail.getHeight();
+    private void cropData() {
 
-        Mat rgba = new Mat();
-        Mat grayMat = new Mat();
-
-        // Convert Bitmap to Mat
-        Utils.bitmapToMat(thumbnail, rgba);
-
-        // Convert RGBA to Grayscale
-        Imgproc.cvtColor(rgba, grayMat, Imgproc.COLOR_RGBA2GRAY);
-
-        // Convert grayscale Mat to Bitmap
-        Bitmap grayscaleBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(grayMat, grayscaleBitmap);
-
-        return grayscaleBitmap;
+        Toast.makeText(this, "Uri: " + imageUri.toString(), Toast.LENGTH_SHORT).show();
+        //mGetImage.launch(imageUri);
+        /*Intent intent = new Intent(ScannerActivity.this, CropperActivity.class);
+        intent.putExtra("imageUri", imageUri.toString()); // Use a key like "imageUriCamera"
+        startActivityForResult(intent, CAMERA_SELECT_CODE);*/
     }
+
+    public static Bitmap greyScaleConversion(Bitmap inputBitmap) {
+        // Step 1: Grayscale Conversion
+        Bitmap grayBitmap = Bitmap.createBitmap(inputBitmap.getWidth(), inputBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(grayBitmap);
+        Paint paint = new Paint();
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(0); // Remove color (convert to grayscale)
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
+        paint.setColorFilter(filter);
+        canvas.drawBitmap(inputBitmap, 0, 0, paint);
+
+        // Step 2: Binarization (Thresholding)
+        Bitmap binaryBitmap = Bitmap.createBitmap(grayBitmap.getWidth(), grayBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        for (int x = 0; x < grayBitmap.getWidth(); x++) {
+            for (int y = 0; y < grayBitmap.getHeight(); y++) {
+                int pixel = grayBitmap.getPixel(x, y);
+                int grayValue = Color.red(pixel); // All RGB components are equal in grayscale
+                if (grayValue > 128) {
+                    binaryBitmap.setPixel(x, y, Color.WHITE); // Apply threshold
+                } else {
+                    binaryBitmap.setPixel(x, y, Color.BLACK);
+                }
+            }
+        }
+
+        // Step 3: Noise Reduction (Smoothing with Simple Blur)
+        Bitmap blurredBitmap = Bitmap.createBitmap(binaryBitmap);
+        Canvas blurredCanvas = new Canvas(blurredBitmap);
+        Paint blurPaint = new Paint();
+        blurPaint.setAntiAlias(true);
+        blurPaint.setFilterBitmap(true);
+        blurPaint.setDither(true);
+        blurredCanvas.drawBitmap(binaryBitmap, 0, 0, blurPaint);
+
+        // Step 4: Sharpening (Unsharp Mask Approximation)
+        Bitmap sharpenedBitmap = Bitmap.createBitmap(blurredBitmap.getWidth(), blurredBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        for (int x = 1; x < blurredBitmap.getWidth() - 1; x++) {
+            for (int y = 1; y < blurredBitmap.getHeight() - 1; y++) {
+                int centerPixel = blurredBitmap.getPixel(x, y);
+                int topPixel = blurredBitmap.getPixel(x, y - 1);
+                int bottomPixel = blurredBitmap.getPixel(x, y + 1);
+                int leftPixel = blurredBitmap.getPixel(x - 1, y);
+                int rightPixel = blurredBitmap.getPixel(x + 1, y);
+
+                int sharpRed = Math.min(Math.max((5 * Color.red(centerPixel)) -
+                        Color.red(topPixel) - Color.red(bottomPixel) -
+                        Color.red(leftPixel) - Color.red(rightPixel), 0), 255);
+
+                sharpenedBitmap.setPixel(x, y, Color.rgb(sharpRed, sharpRed, sharpRed));
+            }
+        }
+
+        return sharpenedBitmap;
+    }
+
+
 
     private void extractText(Bitmap bitmap) throws IOException {
         tessBaseAPI.setImage(bitmap);
@@ -213,6 +279,7 @@ public class ScannerActivity extends AppCompatActivity {
         }
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         moveTaskToBack(true); // Move the task containing this activity to the background
     }
 

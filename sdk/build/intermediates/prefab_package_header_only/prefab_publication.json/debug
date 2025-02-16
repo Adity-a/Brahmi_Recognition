@@ -1,5 +1,5 @@
 {
-  "installationFolder": "C:\\Users\\adity\\StudioProjects\\Major-Project\\sdk\\build\\intermediates\\prefab_package\\debug\\prefab",
+  "installationFolder": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\build\\intermediates\\prefab_package\\debug\\prefab",
   "gradlePath": ":sdk",
   "packageInfo": {
     "packageName": "sdk",
@@ -8,7 +8,7 @@
     "modules": [
       {
         "moduleName": "opencv_jni_shared",
-        "moduleHeaders": "C:\\Users\\adity\\StudioProjects\\Major-Project\\sdk\\native\\jni\\include",
+        "moduleHeaders": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\native\\jni\\include",
         "moduleExportLibraries": [],
         "abis": []
       }

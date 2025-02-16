@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.ocr.brahmi.translation'
-    compileSdk 33
+    compileSdk 34
 
 
     defaultConfig {
@@ -37,10 +37,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.activity:activity:1.8.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.valdesekamdem.library:md-toast:0.9.0'
+    //implementation 'com.valdesekamdem.library:md-toast:0.9.0'
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
     implementation 'com.google.mlkit:translate:17.0.1'
     implementation'androidx.multidex:multidex:2.0.1'
@@ -48,6 +49,8 @@ dependencies {
     implementation 'com.rmtheis:tess-two:9.1.0'
 
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+
+    implementation 'com.github.yalantis:ucrop:2.2.9-native'
 
     implementation project(':sdk')
 }
