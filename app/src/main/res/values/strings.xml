@@ -14,5 +14,11 @@
         2. Second button will open the image picker for selecting Brahmi Image.\n
     </string>
 
+    <string-array name="language_array">
+        <item>Brahmi</item>
+        <item>Sanskrit</item>
+        <item>English</item>
+    </string-array>
+
 
 </resources>

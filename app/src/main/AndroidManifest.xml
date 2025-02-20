@@ -32,14 +32,14 @@
         android:theme="@style/Theme.Translation"
         tools:targetApi="31" >
         <activity
-            android:name=".CropperActivity"
+            android:name="com.ocr.scripts.translation.CropperActivity"
             android:exported="false" />
         <activity
-            android:name=".ScannerActivity"
+            android:name="com.ocr.scripts.translation.ScannerActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="com.ocr.scripts.translation.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.ocr.scripts.translation.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -59,12 +59,12 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
+            android:authorities="com.ocr.san.sanskrit.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
     </application>
 
