@@ -8,7 +8,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.ocr.brahmi.translation"
+        applicationId "com.ocr.scripts.translation"
         minSdk 19
         targetSdk 33
         versionCode 1

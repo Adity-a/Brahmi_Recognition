@@ -4,7 +4,7 @@
             "outputFile": "org.opencv.test.sdk-mergeDebugAndroidTestResources-1:/values/values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\adity.KARUNA\\StudioProjects\\Brahmi_Recognition\\sdk\\build\\intermediates\\packaged_res\\debug\\values\\values.xml",
+                    "source": "C:\\Users\\adity.KARUNA\\StudioProjects\\sdk\\build\\intermediates\\packaged_res\\debug\\values\\values.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

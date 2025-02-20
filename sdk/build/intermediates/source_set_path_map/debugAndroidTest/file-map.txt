@@ -1,5 +1,5 @@
-org.opencv.test.sdk-androidTest-0 C:\Users\adity.KARUNA\StudioProjects\Brahmi_Recognition\sdk\build\generated\res\resValues\androidTest\debug
-org.opencv.test.sdk-mergeDebugAndroidTestResources-1 C:\Users\adity.KARUNA\StudioProjects\Brahmi_Recognition\sdk\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-org.opencv.test.sdk-mergeDebugAndroidTestResources-2 C:\Users\adity.KARUNA\StudioProjects\Brahmi_Recognition\sdk\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-org.opencv.test.sdk-merged_res-3 C:\Users\adity.KARUNA\StudioProjects\Brahmi_Recognition\sdk\build\intermediates\merged_res\debugAndroidTest
-org.opencv.test.sdk-packaged_res-4 C:\Users\adity.KARUNA\StudioProjects\Brahmi_Recognition\sdk\build\intermediates\packaged_res\debug
+org.opencv.test.sdk-androidTest-0 C:\Users\adity.KARUNA\StudioProjects\sdk\build\generated\res\resValues\androidTest\debug
+org.opencv.test.sdk-mergeDebugAndroidTestResources-1 C:\Users\adity.KARUNA\StudioProjects\sdk\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+org.opencv.test.sdk-mergeDebugAndroidTestResources-2 C:\Users\adity.KARUNA\StudioProjects\sdk\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+org.opencv.test.sdk-merged_res-3 C:\Users\adity.KARUNA\StudioProjects\sdk\build\intermediates\merged_res\debugAndroidTest
+org.opencv.test.sdk-packaged_res-4 C:\Users\adity.KARUNA\StudioProjects\sdk\build\intermediates\packaged_res\debug
