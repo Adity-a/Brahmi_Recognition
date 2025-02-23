@@ -8,7 +8,9 @@ This Android application is deviloped using Tesseract OCR for recognizing Brahmi
 - **Optical Character Recognition (OCR)**: Uses Tesseract to perform accurate OCR for Brahmi characters.
 
 ## Demo Images
-![Screenshots]
+![Screenshot](https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/1.jpg)
+![Screenshot](https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/2.jpg)
+![Screenshot](https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/3.jpg)
 
 ## Installation
 
