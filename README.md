@@ -7,6 +7,9 @@ This Android application is deviloped using Tesseract OCR for recognizing Brahmi
 - **Camera Integration**: Capture images directly within the app.
 - **Optical Character Recognition (OCR)**: Uses Tesseract to perform accurate OCR for Brahmi characters.
 
+## Demo Images
+![Screenshots]
+
 ## Installation
 
 1. Clone the repository:
