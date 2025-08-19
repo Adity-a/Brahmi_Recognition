@@ -7,12 +7,13 @@ This Android application is deviloped using Tesseract OCR for recognizing Brahmi
 - **Camera Integration**: Capture images directly within the app.
 - **Optical Character Recognition (OCR)**: Uses Tesseract to perform accurate OCR for Brahmi characters.
 
-## Demo Images
-<p float="left">
-  <img src="https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/1.jpg" alt="Alt Text" style="width:50%; height:auto;">
-<img src="https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/2.jpg" alt="Alt Text" style="width:50%; height:auto;">
-<img src="https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/3.jpg" alt="Alt Text" style="width:50%; height:auto;">
-</p>
+### Screenshots
+
+| Scan-Page | Tanslator-Page | Crop-Page |
+| :---: | :---: | :---: |
+| ![App Screenshot 1](https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/1.jpg) | ![App Screenshot 2](https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/2.jpg) | ![App Screenshot 3](https://github.com/Adity-a/Brahmi_Recognition/blob/main/Screenshots/3.jpg) |
+
+---
 
 ## Installation
 
